@@ -1,3 +1,10 @@
+import { CurrencyConverterProvider } from "../providers/CurrencyConverterProvider";
+import { CurrencyConverter } from "./CurrencyConverter";
+
 export function MainApp() {
-  return <div>MainApp</div>;
+  return (
+    <CurrencyConverterProvider>
+      <CurrencyConverter />
+    </CurrencyConverterProvider>
+  );
 }
