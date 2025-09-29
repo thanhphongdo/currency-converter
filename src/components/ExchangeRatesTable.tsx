@@ -1,21 +1,23 @@
 import { NumberFormatter, Table, Text } from "@mantine/core";
 import { CurrencyOptions } from "../const/currency-options";
 import { useCurrencyConverterContext } from "../providers/CurrencyConverterProvider.Context";
+import { useTranslation } from "react-i18next";
 
 export function ExchangeRatesTable() {
   const { fromCurrency, fromAmount, rates, converter } =
     useCurrencyConverterContext();
+  const { t } = useTranslation();
   return (
     <div className="mt-4 lg:mt-8">
       <Text size="xl" fw={600}>
-        Exchange rates
+        {t("exchangeRates")}
       </Text>
       <Table>
         <Table.Thead>
           <Table.Tr>
-            <Table.Th className="w-1/4">Currency</Table.Th>
-            <Table.Th className="w-1/3">Rate</Table.Th>
-            <Table.Th>Converted</Table.Th>
+            <Table.Th className="w-1/4">{t("currency")}</Table.Th>
+            <Table.Th className="w-1/3">{t("rate")}</Table.Th>
+            <Table.Th>{t("converted")}</Table.Th>
           </Table.Tr>
         </Table.Thead>
         <Table.Tbody>

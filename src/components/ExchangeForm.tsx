@@ -2,6 +2,7 @@ import { CurrencySelection } from "./CurrencySelection";
 import { NumberInput } from "@mantine/core";
 import { IconArrowsExchange } from "@tabler/icons-react";
 import { useCurrencyConverterContext } from "../providers/CurrencyConverterProvider.Context";
+import { useTranslation } from "react-i18next";
 
 export function ExchangeForm() {
   const {
@@ -15,11 +16,12 @@ export function ExchangeForm() {
     setToCurrency,
   } = useCurrencyConverterContext();
 
+  const { t } = useTranslation();
+
   return (
     <div className="flex gap-4 justify-center items-center w-full">
       <div className="flex-1 flex flex-col gap-4">
         <CurrencySelection
-          label="From"
           defaultValue={fromCurrency}
           onChange={(value) => {
             setFromCurrency(value);
@@ -27,7 +29,7 @@ export function ExchangeForm() {
         />
         <div className="w-full">
           <NumberInput
-            placeholder="Enter amount"
+            placeholder={t("enterAmount")}
             className="w-full"
             thousandSeparator=" "
             value={fromAmount}
@@ -38,7 +40,6 @@ export function ExchangeForm() {
         </div>
       </div>
       <div>
-        <div className="h-6"></div>
         <IconArrowsExchange
           className="cursor-pointer"
           onClick={() => {
@@ -51,7 +52,6 @@ export function ExchangeForm() {
       </div>
       <div className="flex-1 flex flex-col gap-4">
         <CurrencySelection
-          label="To"
           defaultValue={toCurrency}
           onChange={(value) => {
             setToCurrency(value);
@@ -59,7 +59,7 @@ export function ExchangeForm() {
         />
         <div className="w-full">
           <NumberInput
-            placeholder="Enter amount"
+            placeholder={t("enterAmount")}
             className="w-full"
             thousandSeparator=" "
             value={toAmount}

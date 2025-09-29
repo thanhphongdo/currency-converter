@@ -7,6 +7,7 @@ import "@mantine/core/styles.css";
 import { MantineProvider } from "@mantine/core";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "./helpers/query-client";
+import "./i18n";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement

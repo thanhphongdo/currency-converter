@@ -1,0 +1,10 @@
+{
+  "title": "Bộ chuyển đổi tiền tệ",
+  "from": "Từ",
+  "to": "Sang",
+  "enterAmount": "Nhập số tiền",
+  "exchangeRates": "Tỷ giá hối đoái",
+  "currency": "Tiền tệ",
+  "rate": "Tỷ giá",
+  "converted": "Đã quy đổi"
+}

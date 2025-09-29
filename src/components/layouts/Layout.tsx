@@ -2,9 +2,12 @@ import { AppShell, Burger, Drawer, Group, Text } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { PropsWithChildren } from "react";
 import { SwitchTheme } from "../SwitchTheme";
+import { useTranslation } from "react-i18next";
+import { SwitchLang } from "../SwitchLang";
 
 export function Layout({ children }: PropsWithChildren) {
   const [opened, { toggle, close }] = useDisclosure();
+  const { t } = useTranslation();
   return (
     <AppShell
       layout="alt"
@@ -24,13 +27,14 @@ export function Layout({ children }: PropsWithChildren) {
             />
             <div className="flex-1 text-center">
               <Text size="xl" fw={600} className="font-fredoka">
-                Currency Converter
+                {t("title")}
               </Text>
             </div>
           </div>
         </Group>
       </AppShell.Header>
       <AppShell.Main>{children}</AppShell.Main>
+      <SwitchLang />
       <SwitchTheme />
       <Drawer opened={opened} onClose={close} title="Implement later">
         {/* Drawer content */}

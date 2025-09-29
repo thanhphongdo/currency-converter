@@ -1,0 +1,10 @@
+{
+  "title": "Convertisseur de devises",
+  "from": "De",
+  "to": "À",
+  "enterAmount": "Saisir le montant",
+  "exchangeRates": "Taux de change",
+  "currency": "Devise",
+  "rate": "Taux",
+  "converted": "Converti"
+}

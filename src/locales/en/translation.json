@@ -1,0 +1,10 @@
+{
+  "title": "Currency Converter",
+  "from": "From",
+  "to": "To",
+  "enterAmount": "Enter Amount",
+  "exchangeRates": "Exchange rates",
+  "currency": "Currency",
+  "rate": "Rate",
+  "converted": "Converted"
+}
