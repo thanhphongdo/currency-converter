@@ -27,9 +27,13 @@ export function SwitchLang() {
             aria-label="Toggle color scheme"
             onClick={() => combobox.toggleDropdown()}
           >
-            {(i18n.language === "en-US" || !i18n.language) && <GB width={20} />}
-            {i18n.language === "fr-FR" && <FR width={20} />}
-            {i18n.language === "vi-VN" && <VN width={20} />}
+            {i18n.language.startsWith("fr") ? (
+              <FR width={20} />
+            ) : i18n.language.startsWith("vi") ? (
+              <VN width={20} />
+            ) : (
+              <GB width={20} />
+            )}
           </ActionIcon>
         </Combobox.Target>
 
