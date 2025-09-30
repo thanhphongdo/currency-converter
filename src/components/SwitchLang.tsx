@@ -1,31 +1,34 @@
-import { ActionIcon, Combobox, Text, useCombobox } from "@mantine/core";
+import { ActionIcon, Menu } from "@mantine/core";
 import { GB, FR, VN } from "country-flag-icons/react/3x2";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 export function SwitchLang() {
   const { i18n } = useTranslation();
-  const combobox = useCombobox({
-    onDropdownClose: () => combobox.resetSelectedOption(),
-  });
+  const [resizeKey, setResizeKey] = useState(0);
+  useEffect(() => {
+    const handleResize = () => {
+      // force re-render to fix the bug of Mantine
+      setResizeKey((prev) => prev + 1);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
   return (
     <>
-      <Combobox
-        store={combobox}
-        width={250}
-        position="bottom-end"
-        withArrow
-        onOptionSubmit={(val) => {
-          i18n.changeLanguage(val);
-          combobox.closeDropdown();
-        }}
+      <Menu
+        shadow="md"
+        width={200}
+        position="left-end"
+        withinPortal
+        key={resizeKey}
       >
-        <Combobox.Target>
+        <Menu.Target>
           <ActionIcon
             className="!fixed bottom-20 right-4"
             variant="default"
             size="xl"
-            aria-label="Toggle color scheme"
-            onClick={() => combobox.toggleDropdown()}
           >
             {i18n.language.startsWith("fr") ? (
               <FR width={20} />
@@ -35,31 +38,29 @@ export function SwitchLang() {
               <GB width={20} />
             )}
           </ActionIcon>
-        </Combobox.Target>
+        </Menu.Target>
 
-        <Combobox.Dropdown>
-          <Combobox.Options>
-            <Combobox.Option value="en-US">
-              <div className="flex gap-2">
-                <GB width={20} />
-                <Text>English</Text>
-              </div>
-            </Combobox.Option>
-            <Combobox.Option value="fr-FR">
-              <div className="flex gap-2">
-                <FR width={20} />
-                <Text>Français</Text>
-              </div>
-            </Combobox.Option>
-            <Combobox.Option value="vi-VN">
-              <div className="flex gap-2">
-                <VN width={20} />
-                <Text>Tiếng Việt</Text>
-              </div>
-            </Combobox.Option>
-          </Combobox.Options>
-        </Combobox.Dropdown>
-      </Combobox>
+        <Menu.Dropdown>
+          <Menu.Item
+            onClick={() => i18n.changeLanguage("en-US")}
+            leftSection={<GB width={20} />}
+          >
+            English
+          </Menu.Item>
+          <Menu.Item
+            onClick={() => i18n.changeLanguage("fr-FR")}
+            leftSection={<FR width={20} values="fr-FR" />}
+          >
+            Français
+          </Menu.Item>
+          <Menu.Item
+            onClick={() => i18n.changeLanguage("vi-VN")}
+            leftSection={<VN width={20} values="vi-VN" />}
+          >
+            Tiếng Việt
+          </Menu.Item>
+        </Menu.Dropdown>
+      </Menu>
     </>
   );
 }
